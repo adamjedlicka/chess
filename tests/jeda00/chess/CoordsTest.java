@@ -44,4 +44,10 @@ class CoordsTest {
         coords = Coords.fromString("G6");
         assertEquals(Color.WHITE, coords.getColor());
     }
+
+    @Test
+    void testGetIndex() {
+        coords = Coords.fromString("D6");
+        assertEquals(19, coords.getIndex());
+    }
 }

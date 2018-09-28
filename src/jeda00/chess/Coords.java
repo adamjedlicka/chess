@@ -22,11 +22,15 @@ final public class Coords {
     }
 
     public Color getColor() {
-        if(row % 2 == 0) {
+        if (row % 2 == 0) {
             return col % 2 == 0 ? Color.WHITE : Color.BLACK;
         } else {
             return col % 2 == 0 ? Color.BLACK : Color.WHITE;
         }
+    }
+
+    public int getIndex() {
+        return (row * 8) + col;
     }
 
     @Override
