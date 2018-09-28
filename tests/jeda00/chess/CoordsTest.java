@@ -1,6 +1,5 @@
 package jeda00.chess;
 
-import jeda00.chess.Coords;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -35,5 +34,14 @@ class CoordsTest {
         Coords coords2 = Coords.fromString("F4");
 
         assertEquals(coords1, coords2);
+    }
+
+    @Test
+    void testGetColor() {
+        coords = Coords.fromString("D4");
+        assertEquals(Color.BLACK, coords.getColor());
+
+        coords = Coords.fromString("G6");
+        assertEquals(Color.WHITE, coords.getColor());
     }
 }

@@ -21,6 +21,14 @@ final public class Coords {
         return new Coords(rowInt, colInt);
     }
 
+    public Color getColor() {
+        if(row % 2 == 0) {
+            return col % 2 == 0 ? Color.WHITE : Color.BLACK;
+        } else {
+            return col % 2 == 0 ? Color.BLACK : Color.WHITE;
+        }
+    }
+
     @Override
     public String toString() {
         char[] coords = {(char) (col + 'A'), (char) (8 - (row) + '0')};
