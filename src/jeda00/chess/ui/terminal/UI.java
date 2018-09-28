@@ -1,6 +1,7 @@
 package jeda00.chess.ui.terminal;
 
 import jeda00.chess.Game;
+import jeda00.chess.logic.Player;
 
 public class UI {
 
@@ -15,8 +16,23 @@ public class UI {
         this.boardRenderer = new BoardRenderer();
     }
 
-    public void handle() {
-        boardRenderer.render(game.getBoard());
+    public void handle() throws Exception {
+        while (true) {
+            clearConsole();
+
+            boardRenderer.render(game.getBoard());
+
+            Player player = new Player(game);
+            player.randomMove();
+
+            Thread.sleep(1000);
+        }
+    }
+
+    private void clearConsole() {
+        for (int i = 0; i < 10; i++) {
+            System.out.println();
+        }
     }
 
 }

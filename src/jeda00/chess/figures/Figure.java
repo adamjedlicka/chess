@@ -3,6 +3,8 @@ package jeda00.chess.figures;
 import jeda00.chess.Color;
 import jeda00.chess.Coords;
 
+import java.util.List;
+
 abstract public class Figure {
 
     private final Color color;
@@ -13,6 +15,8 @@ abstract public class Figure {
         this.color = color;
         this.coords = coords;
     }
+
+    abstract public List<Coords> getPossibleMoves();
 
     public Color getColor() {
         return color;

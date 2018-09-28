@@ -25,7 +25,9 @@ public class Tile {
     }
 
     public void setFigure(Figure figure) {
-        figure.setCoords(coords);
+        if (figure != null) {
+            figure.setCoords(coords);
+        }
 
         this.figure = figure;
     }
