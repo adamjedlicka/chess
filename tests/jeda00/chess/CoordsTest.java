@@ -1,5 +1,6 @@
-package jeda00;
+package jeda00.chess;
 
+import jeda00.chess.Coords;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

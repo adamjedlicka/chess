@@ -1,4 +1,4 @@
-package jeda00;
+package jeda00.chess;
 
 final public class Coords {
 
