@@ -22,6 +22,17 @@ public class GameSetter {
             }
         }
 
+        setWhite(tiles);
+        setBlack(tiles);
+
+        return tiles;
+    }
+
+    private void addFigureToTiles(Figure figure, List<Tile> tiles) {
+        tiles.get(figure.getCoords().getIndex()).setFigure(figure);
+    }
+
+    private void setWhite(List<Tile> tiles) {
         addFigureToTiles(new Pawn(Color.WHITE, "A2"), tiles);
         addFigureToTiles(new Pawn(Color.WHITE, "B2"), tiles);
         addFigureToTiles(new Pawn(Color.WHITE, "C2"), tiles);
@@ -30,12 +41,17 @@ public class GameSetter {
         addFigureToTiles(new Pawn(Color.WHITE, "F2"), tiles);
         addFigureToTiles(new Pawn(Color.WHITE, "G2"), tiles);
         addFigureToTiles(new Pawn(Color.WHITE, "H2"), tiles);
-
-        return tiles;
     }
 
-    private void addFigureToTiles(Figure figure, List<Tile> tiles) {
-        tiles.get(figure.getCoords().getIndex()).setFigure(figure);
+    private void setBlack(List<Tile> tiles) {
+        addFigureToTiles(new Pawn(Color.BLACK, "A7"), tiles);
+        addFigureToTiles(new Pawn(Color.BLACK, "B7"), tiles);
+        addFigureToTiles(new Pawn(Color.BLACK, "C7"), tiles);
+        addFigureToTiles(new Pawn(Color.BLACK, "D7"), tiles);
+        addFigureToTiles(new Pawn(Color.BLACK, "E7"), tiles);
+        addFigureToTiles(new Pawn(Color.BLACK, "F7"), tiles);
+        addFigureToTiles(new Pawn(Color.BLACK, "G7"), tiles);
+        addFigureToTiles(new Pawn(Color.BLACK, "H7"), tiles);
     }
 
 }

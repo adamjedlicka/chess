@@ -14,5 +14,9 @@ public class Board {
         this.tiles = (new GameSetter()).defaultGame();
     }
 
+    public List<Tile> getTiles() {
+        return tiles;
+    }
+
 }
 
