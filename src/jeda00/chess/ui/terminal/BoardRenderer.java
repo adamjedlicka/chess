@@ -11,7 +11,15 @@ import jeda00.chess.figures.Pawn;
 public class BoardRenderer {
 
     public void render(Board board) {
+        System.out.print("  ");
+        for (int col = 0; col < board.DIMENSION; col++) {
+            System.out.print((char)('A' + col) + " ");
+        }
+        System.out.println();
+
         for (int row = 0; row < board.DIMENSION; row++) {
+            System.out.print((board.DIMENSION - row) + " ");
+
             for (int col = 0; col < board.DIMENSION; col++) {
                 Tile tile = board.getTiles().get(row * board.DIMENSION + col);
                 Figure figure = tile.getFigure();

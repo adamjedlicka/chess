@@ -18,6 +18,15 @@ public class Game {
         this.activePlayerColor = Color.WHITE;
     }
 
+    public Game(Game game) {
+        this.board = new GameSetter().emptyBoard();
+        this.activePlayerColor = game.activePlayerColor;
+
+        for (Figure figure : game.getBoard().getFigures()) {
+            this.board.getTile(figure.getCoords()).setFigure(figure.copyToNewBoard(this.board));
+        }
+    }
+
     public void makeMove(Move move) throws IllegalMoveException {
         if (!move.getTo().inBounds()) {
             throw new IllegalMoveException("Move out of bounds: " + move);
@@ -26,12 +35,14 @@ public class Game {
         Tile from = board.getTile(move.getFrom());
         Tile to = board.getTile(move.getTo());
 
+        Figure figure = from.getFigure();
+
         if (to.isOccupied()) {
             to.removeFigure();
         }
 
         from.removeFigure();
-        to.setFigure(move.getFigure());
+        to.setFigure(figure);
 
         activePlayerColor = activePlayerColor.opposite();
     }
@@ -72,6 +83,10 @@ public class Game {
 
     public Board getBoard() {
         return board;
+    }
+
+    public Color getActivePlayerColor() {
+        return activePlayerColor;
     }
 
 }

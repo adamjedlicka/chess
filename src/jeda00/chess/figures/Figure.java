@@ -23,6 +23,8 @@ abstract public class Figure {
 
     abstract public int getValue();
 
+    abstract public Figure copyToNewBoard(Board board);
+
     public Move getBestMove() {
         List<Move> moves = getPossibleMoves();
 

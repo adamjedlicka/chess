@@ -51,4 +51,9 @@ public class Pawn extends Figure {
         return (isWhite() ? "White" : "Black") + " pawn at " + getCoords();
     }
 
+    @Override
+    public Figure copyToNewBoard(Board board) {
+        return new Pawn(board, getColor(), getCoords().toString());
+    }
+
 }

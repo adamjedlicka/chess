@@ -3,7 +3,7 @@ package jeda00.chess.ui.terminal;
 import jeda00.chess.Color;
 import jeda00.chess.Game;
 import jeda00.chess.Move;
-import jeda00.chess.logic.Player;
+import jeda00.chess.logic.BasicPlayer;
 
 public class UI {
 
@@ -24,8 +24,8 @@ public class UI {
         while (!game.isGameOver()) {
             clearConsole();
 
-            Player player = new Player(game);
-            Move move = player.bestOrRandomMove();
+            BasicPlayer player = new BasicPlayer(game);
+            Move move = player.play();
 
             System.out.println(move);
 

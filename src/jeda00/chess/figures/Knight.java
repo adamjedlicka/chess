@@ -75,4 +75,9 @@ public class Knight extends Figure {
         return (isWhite() ? "White" : "Black") + " knight at " + getCoords();
     }
 
+    @Override
+    public Figure copyToNewBoard(Board board) {
+        return new Knight(board, getColor(), getCoords().toString());
+    }
+
 }

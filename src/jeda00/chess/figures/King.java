@@ -71,6 +71,11 @@ public class King extends Figure {
 
     @Override
     public String toString() {
-        return (isWhite() ? "White" : "Black") + " kings at " + getCoords();
+        return (isWhite() ? "White" : "Black") + " king at " + getCoords();
+    }
+
+    @Override
+    public Figure copyToNewBoard(Board board) {
+        return new King(board, getColor(), getCoords().toString());
     }
 }

@@ -43,6 +43,10 @@ public class Move implements Comparable<Move> {
         return to;
     }
 
+    public Color getPlayerColor() {
+        return figure.getColor();
+    }
+
     private void checkLegality() throws IllegalMoveException {
         if (from == to) {
             throw new IllegalMoveException("Figure has to move somewhere else.");

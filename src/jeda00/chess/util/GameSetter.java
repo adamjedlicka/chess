@@ -13,6 +13,21 @@ import java.util.List;
 
 public class GameSetter {
 
+    public Board emptyBoard() {
+        Board board = new Board();
+        List<Tile> tiles = board.getTiles();
+
+        for (char row = '8'; row >= '1'; row--) {
+            for (char col = 'A'; col <= 'H'; col++) {
+                char[] coords = {col, row};
+
+                tiles.add(new Tile(Coords.fromString(new String(coords))));
+            }
+        }
+
+        return board;
+    }
+
     public Board defaultBoard() {
         Board board = new Board();
         List<Tile> tiles = board.getTiles();
