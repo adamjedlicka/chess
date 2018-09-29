@@ -1,5 +1,6 @@
 package jeda00.chess;
 
+import com.sun.istack.internal.NotNull;
 import jeda00.chess.figures.Figure;
 
 public class Tile {
@@ -24,12 +25,14 @@ public class Tile {
         return figure;
     }
 
-    public void setFigure(Figure figure) {
-        if (figure != null) {
-            figure.setCoords(coords);
-        }
+    public void setFigure(@NotNull Figure figure) {
+        figure.setCoords(coords);
 
         this.figure = figure;
+    }
+
+    public void removeFigure() {
+        this.figure = null;
     }
 
     public boolean isOccupied() {

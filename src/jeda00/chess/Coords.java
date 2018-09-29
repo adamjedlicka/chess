@@ -37,6 +37,10 @@ final public class Coords {
         return new Coords(row, col + by);
     }
 
+    public boolean inBounds() {
+        return row >= 0 && col >= 0 && row <= 8 && col <= 8;
+    }
+
     public Color getColor() {
         if (row % 2 == 0) {
             return col % 2 == 0 ? Color.WHITE : Color.BLACK;

@@ -24,12 +24,12 @@ public class Pawn extends Figure {
             }
 
             Coords takeLeft = getCoords().moveUpBy(1 * verticalDirection).moveLeftBy(1);
-            if (getBoard().getTile(takeLeft).isOccupiedBy(getColor().opposite())) {
+            if (takeLeft.inBounds() && getBoard().getTile(takeLeft).isOccupiedBy(getColor().opposite())) {
                 moves.add(moveTo(takeLeft));
             }
 
             Coords takeRight = getCoords().moveUpBy(1 * verticalDirection).moveRightBy(1);
-            if (getBoard().getTile(takeRight).isOccupiedBy(getColor().opposite())) {
+            if (takeLeft.inBounds() && getBoard().getTile(takeRight).isOccupiedBy(getColor().opposite())) {
                 moves.add(moveTo(takeRight));
             }
         } catch (IllegalMoveException e) {
@@ -38,6 +38,11 @@ public class Pawn extends Figure {
         }
 
         return moves;
+    }
+
+    @Override
+    public int getValue() {
+        return 1;
     }
 
 }

@@ -16,11 +16,6 @@ public class Board {
         this.tiles = new ArrayList<>();
     }
 
-    public void moveFigure(Figure figure, Coords coords) {
-        tiles.get(figure.getCoords().getIndex()).setFigure(null);
-        tiles.get(coords.getIndex()).setFigure(figure);
-    }
-
     public List<Figure> getFigures() {
         return getTiles().stream()
                 .map(tile -> tile.getFigure())

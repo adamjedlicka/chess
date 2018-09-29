@@ -23,7 +23,7 @@ public class UI {
             boardRenderer.render(game.getBoard());
 
             Player player = new Player(game);
-            player.randomMove();
+            player.bestOrRandomMove();
 
             Thread.sleep(1000);
         }

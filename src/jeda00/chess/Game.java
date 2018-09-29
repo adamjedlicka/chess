@@ -17,8 +17,17 @@ public class Game {
         this.activePlayerColor = Color.WHITE;
     }
 
-    public void moveFigure(Figure figure, Coords coords) {
-        board.moveFigure(figure, coords);
+    public void makeMove(Move move) {
+        Tile from = board.getTile(move.getFrom());
+        Tile to = board.getTile(move.getTo());
+
+        if (to.isOccupied()) {
+            System.out.println("Figure taken: " + to.getFigure());
+            to.removeFigure();
+        }
+
+        from.removeFigure();
+        to.setFigure(move.getFigure());
 
         activePlayerColor = activePlayerColor.opposite();
     }

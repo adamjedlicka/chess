@@ -2,6 +2,8 @@ package jeda00.chess.figures;
 
 import jeda00.chess.*;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 abstract public class Figure {
@@ -19,6 +21,16 @@ abstract public class Figure {
     }
 
     abstract public List<Move> getPossibleMoves();
+
+    abstract public int getValue();
+
+    public Move getBestMove() {
+        List<Move> moves = getPossibleMoves();
+
+        Collections.sort(moves);
+
+        return !moves.isEmpty() ? moves.get(0) : null;
+    }
 
     public boolean isWhite() {
         return color == Color.WHITE;

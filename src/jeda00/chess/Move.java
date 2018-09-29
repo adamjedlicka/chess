@@ -2,7 +2,7 @@ package jeda00.chess;
 
 import jeda00.chess.figures.Figure;
 
-public class Move {
+public class Move implements Comparable<Move> {
 
     private final Board board;
 
@@ -21,6 +21,24 @@ public class Move {
         checkLegality();
     }
 
+    public boolean takesFigure() {
+        return board.getTile(to).isOccupied();
+    }
+
+    public int getValue() {
+        return takesFigure()
+                ? board.getTile(to).getFigure().getValue()
+                : 0;
+    }
+
+    public Figure getFigure() {
+        return figure;
+    }
+
+    public Coords getFrom() {
+        return from;
+    }
+
     public Coords getTo() {
         return to;
     }
@@ -35,4 +53,9 @@ public class Move {
         }
     }
 
+
+    @Override
+    public int compareTo(Move move) {
+        return this.getValue() - move.getValue();
+    }
 }
