@@ -29,6 +29,8 @@ public class BasicPlayer {
             return new MovePrediction(getBestMove(game));
         }
 
+        Color playerColor = game.getActivePlayerColor();
+
         List<Move> possibleMoves = game.getActiveFigures().stream()
                 .flatMap(figure -> figure.getPossibleMoves().stream())
                 .collect(Collectors.toList());
@@ -42,7 +44,7 @@ public class BasicPlayer {
             MovePrediction prediction = predictPlay(_game, steps - 1);
             prediction.addMove(move);
 
-            if (bestPrediction == null || prediction.getValueFor(_game.getActivePlayerColor()) > bestPrediction.getValueFor(_game.getActivePlayerColor())) {
+            if (bestPrediction == null || prediction.getValueFor(playerColor) > bestPrediction.getValueFor(playerColor)) {
                 bestPrediction = prediction;
             }
         }
