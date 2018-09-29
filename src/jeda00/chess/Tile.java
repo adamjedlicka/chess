@@ -43,4 +43,12 @@ public class Tile {
         return isOccupied() && figure.getColor() == color;
     }
 
+    public boolean isWhite() {
+        return coords.isWhite();
+    }
+
+    public boolean isBlack() {
+        return coords.isBlack();
+    }
+
 }

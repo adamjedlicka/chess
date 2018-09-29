@@ -2,22 +2,22 @@ package jeda00.chess.ui.javafx;
 
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import jeda00.chess.Coords;
+import jeda00.chess.Tile;
 
 public class FXTile extends Rectangle {
 
     public static final int SIZE = 100;
 
-    private Coords coords;
+    private final Tile tile;
 
     private boolean active;
 
-    public FXTile(Coords coords) {
-        this.coords = coords;
+    public FXTile(Tile tile) {
+        this.tile = tile;
         this.active = false;
 
-        setX(coords.getCol() * SIZE);
-        setY(coords.getRow() * SIZE);
+        setX(tile.getCoords().getCol() * SIZE);
+        setY(tile.getCoords().getRow() * SIZE);
         setWidth(SIZE);
         setHeight(SIZE);
 
@@ -25,11 +25,11 @@ public class FXTile extends Rectangle {
     }
 
     public void activate() {
-        setFill(coords.isWhite() ? Color.LIGHTSTEELBLUE : Color.STEELBLUE);
+        setFill(tile.isWhite() ? Color.LIGHTSTEELBLUE : Color.STEELBLUE);
     }
 
     public void deactivate() {
-        setFill(coords.isWhite() ? Color.LIGHTGRAY : Color.DARKGRAY);
+        setFill(tile.isWhite() ? Color.LIGHTGRAY : Color.DARKGRAY);
     }
 
 }
