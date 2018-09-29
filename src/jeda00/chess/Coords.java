@@ -49,6 +49,14 @@ final public class Coords {
         }
     }
 
+    public boolean isWhite() {
+        return getColor() == Color.WHITE;
+    }
+
+    public boolean isBlack() {
+        return getColor() == Color.BLACK;
+    }
+
     public int getIndex() {
         return (row * 8) + col;
     }
