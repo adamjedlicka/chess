@@ -14,23 +14,24 @@ public class Pawn extends Figure {
     @Override
     public List<Move> getPossibleMoves() {
         List<Move> moves = new ArrayList<>();
+        Coords coords;
 
         int verticalDirection = isWhite() ? 1 : -1;
 
         try {
-            Coords step = getCoords().moveUpBy(1 * verticalDirection);
-            if (step.inBounds() && !getBoard().getTile(step).isOccupied()) {
-                moves.add(moveTo(step));
+            coords = getCoords().moveUpBy(1 * verticalDirection);
+            if (coords.inBounds() && !getBoard().getTile(coords).isOccupied()) {
+                moves.add(moveTo(coords));
             }
 
-            Coords takeLeft = getCoords().moveUpBy(1 * verticalDirection).moveLeftBy(1);
-            if (takeLeft.inBounds() && getBoard().getTile(takeLeft).isOccupiedBy(getColor().opposite())) {
-                moves.add(moveTo(takeLeft));
+            coords = getCoords().moveUpBy(1 * verticalDirection).moveLeftBy(1);
+            if (coords.inBounds() && getBoard().getTile(coords).isOccupiedBy(getColor().opposite())) {
+                moves.add(moveTo(coords));
             }
 
-            Coords takeRight = getCoords().moveUpBy(1 * verticalDirection).moveRightBy(1);
-            if (takeRight.inBounds() && getBoard().getTile(takeRight).isOccupiedBy(getColor().opposite())) {
-                moves.add(moveTo(takeRight));
+            coords = getCoords().moveUpBy(1 * verticalDirection).moveRightBy(1);
+            if (coords.inBounds() && getBoard().getTile(coords).isOccupiedBy(getColor().opposite())) {
+                moves.add(moveTo(coords));
             }
         } catch (IllegalMoveException e) {
             System.err.println("IllegalMoveException while calculating possible moves for a pawn.");

@@ -3,7 +3,6 @@ package jeda00.chess.figures;
 import jeda00.chess.*;
 
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 abstract public class Figure {

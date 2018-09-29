@@ -4,6 +4,7 @@ import jeda00.chess.Board;
 import jeda00.chess.Color;
 import jeda00.chess.Tile;
 import jeda00.chess.figures.Figure;
+import jeda00.chess.figures.Knight;
 import jeda00.chess.figures.Pawn;
 
 public class BoardRenderer {
@@ -34,6 +35,8 @@ public class BoardRenderer {
 
         if (figure instanceof Pawn) {
             System.out.print("P");
+        } else if (figure instanceof Knight) {
+            System.out.print("K");
         }
 
         if(figure.getColor() == Color.WHITE) {
