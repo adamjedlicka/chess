@@ -1,5 +1,6 @@
 package jeda00.chess.ui.terminal;
 
+import jeda00.chess.Color;
 import jeda00.chess.Game;
 import jeda00.chess.Move;
 import jeda00.chess.logic.Player;
@@ -20,8 +21,7 @@ public class UI {
     public void handle() throws Exception {
         boardRenderer.render(game.getBoard());
 
-        while (true) {
-            Thread.sleep(1000);
+        while (!game.isGameOver()) {
             clearConsole();
 
             Player player = new Player(game);
@@ -33,6 +33,8 @@ public class UI {
 
             boardRenderer.render(game.getBoard());
         }
+
+        System.out.println((game.getWinner() == Color.WHITE ? "White" : "Black") + " player wins!");
     }
 
     private void clearConsole() {

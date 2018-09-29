@@ -1,6 +1,7 @@
 package jeda00.chess;
 
 import jeda00.chess.figures.Figure;
+import jeda00.chess.figures.King;
 import jeda00.chess.util.GameSetter;
 
 import java.util.List;
@@ -39,6 +40,34 @@ public class Game {
         return board.getFigures().stream()
                 .filter(figure -> figure.getColor() == activePlayerColor)
                 .collect(Collectors.toList());
+    }
+
+    public boolean isGameOver() {
+        return board.getFigures().stream()
+                .filter(figure -> figure instanceof King)
+                .count() != 2;
+    }
+
+    public Color getWinner() {
+        boolean whiteKingAlive = board.getFigures().stream()
+                .filter(figure -> figure instanceof King)
+                .filter(figure -> figure.isWhite())
+                .count() == 1;
+
+        boolean blackKingAlive = board.getFigures().stream()
+                .filter(figure -> figure instanceof King)
+                .filter(figure -> figure.isBlack())
+                .count() == 1;
+
+        if (!whiteKingAlive) {
+            return Color.BLACK;
+        }
+
+        if (!blackKingAlive) {
+            return Color.BLACK;
+        }
+
+        return null;
     }
 
     public Board getBoard() {

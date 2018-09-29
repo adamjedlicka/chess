@@ -26,6 +26,7 @@ abstract public class Figure {
     public Move getBestMove() {
         List<Move> moves = getPossibleMoves();
 
+        Collections.shuffle(moves);
         Collections.sort(moves);
 
         return !moves.isEmpty() ? moves.get(0) : null;
