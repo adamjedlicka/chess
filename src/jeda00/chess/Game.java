@@ -1,6 +1,7 @@
 package jeda00.chess;
 
 import jeda00.chess.figures.Figure;
+import jeda00.chess.util.GameSetter;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -12,7 +13,7 @@ public class Game {
     private Color activePlayerColor;
 
     public Game() {
-        this.board = new Board();
+        this.board = new GameSetter().defaultBoard();
         this.activePlayerColor = Color.WHITE;
     }
 

@@ -1,18 +1,19 @@
 package jeda00.chess.util;
 
+import jeda00.chess.Board;
 import jeda00.chess.Color;
 import jeda00.chess.Coords;
 import jeda00.chess.Tile;
 import jeda00.chess.figures.Figure;
 import jeda00.chess.figures.Pawn;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class GameSetter {
 
-    public List<Tile> defaultGame() {
-        List<Tile> tiles = new ArrayList<>();
+    public Board defaultBoard() {
+        Board board = new Board();
+        List<Tile> tiles = board.getTiles();
 
         for (char row = '8'; row >= '1'; row--) {
             for (char col = 'A'; col <= 'H'; col++) {
@@ -22,36 +23,36 @@ public class GameSetter {
             }
         }
 
-        setWhite(tiles);
-        setBlack(tiles);
+        setWhite(board);
+        setBlack(board);
 
-        return tiles;
+        return board;
     }
 
-    private void addFigureToTiles(Figure figure, List<Tile> tiles) {
-        tiles.get(figure.getCoords().getIndex()).setFigure(figure);
+    private void addFigureToBoard(Figure figure, Board board) {
+        board.getTiles().get(figure.getCoords().getIndex()).setFigure(figure);
     }
 
-    private void setWhite(List<Tile> tiles) {
-        addFigureToTiles(new Pawn(Color.WHITE, "A2"), tiles);
-        addFigureToTiles(new Pawn(Color.WHITE, "B2"), tiles);
-        addFigureToTiles(new Pawn(Color.WHITE, "C2"), tiles);
-        addFigureToTiles(new Pawn(Color.WHITE, "D2"), tiles);
-        addFigureToTiles(new Pawn(Color.WHITE, "E2"), tiles);
-        addFigureToTiles(new Pawn(Color.WHITE, "F2"), tiles);
-        addFigureToTiles(new Pawn(Color.WHITE, "G2"), tiles);
-        addFigureToTiles(new Pawn(Color.WHITE, "H2"), tiles);
+    private void setWhite(Board board) {
+        addFigureToBoard(new Pawn(board, Color.WHITE, "B2"), board);
+        addFigureToBoard(new Pawn(board, Color.WHITE, "A2"), board);
+        addFigureToBoard(new Pawn(board, Color.WHITE, "C2"), board);
+        addFigureToBoard(new Pawn(board, Color.WHITE, "D2"), board);
+        addFigureToBoard(new Pawn(board, Color.WHITE, "E2"), board);
+        addFigureToBoard(new Pawn(board, Color.WHITE, "F2"), board);
+        addFigureToBoard(new Pawn(board, Color.WHITE, "G2"), board);
+        addFigureToBoard(new Pawn(board, Color.WHITE, "H2"), board);
     }
 
-    private void setBlack(List<Tile> tiles) {
-        addFigureToTiles(new Pawn(Color.BLACK, "A7"), tiles);
-        addFigureToTiles(new Pawn(Color.BLACK, "B7"), tiles);
-        addFigureToTiles(new Pawn(Color.BLACK, "C7"), tiles);
-        addFigureToTiles(new Pawn(Color.BLACK, "D7"), tiles);
-        addFigureToTiles(new Pawn(Color.BLACK, "E7"), tiles);
-        addFigureToTiles(new Pawn(Color.BLACK, "F7"), tiles);
-        addFigureToTiles(new Pawn(Color.BLACK, "G7"), tiles);
-        addFigureToTiles(new Pawn(Color.BLACK, "H7"), tiles);
+    private void setBlack(Board board) {
+        addFigureToBoard(new Pawn(board, Color.BLACK, "A7"), board);
+        addFigureToBoard(new Pawn(board, Color.BLACK, "B7"), board);
+        addFigureToBoard(new Pawn(board, Color.BLACK, "C7"), board);
+        addFigureToBoard(new Pawn(board, Color.BLACK, "D7"), board);
+        addFigureToBoard(new Pawn(board, Color.BLACK, "E7"), board);
+        addFigureToBoard(new Pawn(board, Color.BLACK, "F7"), board);
+        addFigureToBoard(new Pawn(board, Color.BLACK, "G7"), board);
+        addFigureToBoard(new Pawn(board, Color.BLACK, "H7"), board);
     }
 
 }

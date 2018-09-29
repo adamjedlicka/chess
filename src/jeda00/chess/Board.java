@@ -1,8 +1,8 @@
 package jeda00.chess;
 
 import jeda00.chess.figures.Figure;
-import jeda00.chess.util.GameSetter;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -10,10 +10,10 @@ public class Board {
 
     public static final int DIMENSION = 8;
 
-    private List<Tile> tiles;
+    private final List<Tile> tiles;
 
     public Board() {
-        this.tiles = (new GameSetter()).defaultGame();
+        this.tiles = new ArrayList<>();
     }
 
     public void moveFigure(Figure figure, Coords coords) {
@@ -26,6 +26,10 @@ public class Board {
                 .map(tile -> tile.getFigure())
                 .filter(figure -> figure != null)
                 .collect(Collectors.toList());
+    }
+
+    public Tile getTile(Coords coords) {
+        return tiles.get(coords.getIndex());
     }
 
     public List<Tile> getTiles() {

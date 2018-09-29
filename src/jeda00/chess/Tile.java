@@ -32,4 +32,12 @@ public class Tile {
         this.figure = figure;
     }
 
+    public boolean isOccupied() {
+        return figure != null;
+    }
+
+    public boolean isOccupiedBy(Color color) {
+        return isOccupied() && figure.getColor() == color;
+    }
+
 }
