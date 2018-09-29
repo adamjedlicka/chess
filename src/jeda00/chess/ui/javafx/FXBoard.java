@@ -54,6 +54,10 @@ public class FXBoard extends Pane {
             if (figure != null && figure.getColor() == game.getActivePlayerColor()) {
                 tiles.get(coords.getIndex()).activate();
                 activeFigure = figure;
+
+                activeFigure.getPossibleMoves().forEach(move -> {
+                    tiles.get(move.getTo().getIndex()).activate();
+                });
             } else {
                 activeFigure = null;
             }
