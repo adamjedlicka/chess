@@ -34,6 +34,16 @@ abstract public class Figure {
         return !moves.isEmpty() ? moves.get(0) : null;
     }
 
+    public boolean canMoveTo(Coords coords) {
+        for (Move move : getPossibleMoves()) {
+            if (move.getTo().equals(coords)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public boolean isWhite() {
         return color == Color.WHITE;
     }

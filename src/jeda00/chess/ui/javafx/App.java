@@ -18,7 +18,9 @@ public class App extends Application {
 
         BorderPane borderPane = new BorderPane();
 
-        borderPane.setCenter(new FXBoard(game.getBoard()));
+        FXBoard fxBoard = new FXBoard(game);
+
+        borderPane.setCenter(fxBoard);
 
         primaryStage.setResizable(false);
         primaryStage.setScene(new Scene(borderPane, 800, 800));

@@ -37,6 +37,10 @@ public class Game {
 
         Figure figure = from.getFigure();
 
+        if (figure.getColor() != activePlayerColor) {
+            throw new IllegalMoveException("Cannot move opponent's figure.");
+        }
+
         if (to.isOccupied()) {
             to.removeFigure();
         }
@@ -75,7 +79,7 @@ public class Game {
         }
 
         if (!blackKingAlive) {
-            return Color.BLACK;
+            return Color.WHITE;
         }
 
         return null;
