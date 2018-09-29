@@ -19,7 +19,7 @@ public class Pawn extends Figure {
 
         try {
             Coords step = getCoords().moveUpBy(1 * verticalDirection);
-            if (!getBoard().getTile(step).isOccupied()) {
+            if (step.inBounds() && !getBoard().getTile(step).isOccupied()) {
                 moves.add(moveTo(step));
             }
 
@@ -29,7 +29,7 @@ public class Pawn extends Figure {
             }
 
             Coords takeRight = getCoords().moveUpBy(1 * verticalDirection).moveRightBy(1);
-            if (takeLeft.inBounds() && getBoard().getTile(takeRight).isOccupiedBy(getColor().opposite())) {
+            if (takeRight.inBounds() && getBoard().getTile(takeRight).isOccupiedBy(getColor().opposite())) {
                 moves.add(moveTo(takeRight));
             }
         } catch (IllegalMoveException e) {
@@ -43,6 +43,11 @@ public class Pawn extends Figure {
     @Override
     public int getValue() {
         return 1;
+    }
+
+    @Override
+    public String toString() {
+        return (isWhite() ? "White" : "Black") + " pawn at " + getCoords();
     }
 
 }

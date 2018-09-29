@@ -17,12 +17,15 @@ public class Game {
         this.activePlayerColor = Color.WHITE;
     }
 
-    public void makeMove(Move move) {
+    public void makeMove(Move move) throws IllegalMoveException {
+        if (!move.getTo().inBounds()) {
+            throw new IllegalMoveException("Move out of bounds: " + move);
+        }
+
         Tile from = board.getTile(move.getFrom());
         Tile to = board.getTile(move.getTo());
 
         if (to.isOccupied()) {
-            System.out.println("Figure taken: " + to.getFigure());
             to.removeFigure();
         }
 

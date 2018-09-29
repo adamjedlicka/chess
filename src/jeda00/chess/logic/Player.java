@@ -1,6 +1,5 @@
 package jeda00.chess.logic;
 
-import jeda00.chess.Coords;
 import jeda00.chess.Game;
 import jeda00.chess.Move;
 import jeda00.chess.figures.Figure;
@@ -18,16 +17,14 @@ public class Player {
         this.game = game;
     }
 
-    public void randomMove() {
+    public Move randomMove() {
         List<Figure> figures = game.getActiveFigures();
         Figure figure = figures.get(new Random().nextInt(figures.size()));
         List<Move> possibleMoves = figure.getPossibleMoves();
-        Move move = possibleMoves.get(new Random().nextInt(possibleMoves.size()));
-
-        game.makeMove(move);
+        return possibleMoves.get(new Random().nextInt(possibleMoves.size()));
     }
 
-    public void bestOrRandomMove() {
+    public Move bestOrRandomMove() {
         List<Move> bestMoves = game.getActiveFigures().stream()
                 .map(figure -> figure.getBestMove())
                 .filter(move -> move != null)
@@ -35,7 +32,7 @@ public class Player {
 
         Collections.sort(bestMoves);
 
-        game.makeMove(bestMoves.get(0));
+        return bestMoves.get(0);
     }
 
 }

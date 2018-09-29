@@ -38,7 +38,7 @@ final public class Coords {
     }
 
     public boolean inBounds() {
-        return row >= 0 && col >= 0 && row <= 8 && col <= 8;
+        return row >= 0 && col >= 0 && row < 8 && col < 8;
     }
 
     public Color getColor() {

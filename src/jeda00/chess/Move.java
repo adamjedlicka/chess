@@ -56,6 +56,23 @@ public class Move implements Comparable<Move> {
 
     @Override
     public int compareTo(Move move) {
-        return this.getValue() - move.getValue();
+        return move.getValue() - this.getValue();
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+
+        sb.append(figure);
+        sb.append(" to: ");
+        sb.append(to);
+
+        if (board.getTile(to).isOccupied()) {
+            sb.append('\n');
+            sb.append("Figure taken: ");
+            sb.append(board.getTile(to).getFigure());
+        }
+
+        return sb.toString();
     }
 }
