@@ -33,6 +33,7 @@ public class App extends Application {
             }
         });
 
+
         borderPane.setCenter(fxBoard);
 
         primaryStage.setResizable(false);
