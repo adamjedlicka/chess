@@ -13,10 +13,14 @@ abstract public class Figure {
 
     private Coords coords;
 
+    private int moved;
+
     public Figure(Board board, Color color, Coords coords) {
         this.board = board;
         this.color = color;
         this.coords = coords;
+
+        this.moved = 0;
     }
 
     abstract public List<Move> getPossibleMoves();
@@ -50,6 +54,14 @@ abstract public class Figure {
 
     public boolean isBlack() {
         return color == Color.BLACK;
+    }
+
+    public void moved() {
+        moved++;
+    }
+
+    public boolean wasMoved() {
+        return moved > 0;
     }
 
     public Move moveTo(Coords coords) throws IllegalMoveException {

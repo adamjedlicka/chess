@@ -24,6 +24,13 @@ public class Pawn extends Figure {
                 moves.add(moveTo(coords));
             }
 
+            if (!wasMoved()) {
+                coords = getCoords().moveUpBy(2 * verticalDirection);
+                if (coords.inBounds() && !getBoard().getTile(coords).isOccupied()) {
+                    moves.add(moveTo(coords));
+                }
+            }
+
             coords = getCoords().moveUpBy(1 * verticalDirection).moveLeftBy(1);
             if (coords.inBounds() && getBoard().getTile(coords).isOccupiedBy(getColor().opposite())) {
                 moves.add(moveTo(coords));

@@ -47,6 +47,7 @@ public class Game {
 
         from.removeFigure();
         to.setFigure(figure);
+        figure.moved();
 
         activePlayerColor = activePlayerColor.opposite();
     }
