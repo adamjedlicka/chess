@@ -1,98 +1,99 @@
 package jeda00.chess.ui.javafx;
 
-import javafx.application.Platform;
-import javafx.scene.control.Alert;
+import javafx.event.EventHandler;
+import javafx.event.EventType;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import jeda00.chess.*;
 import jeda00.chess.figures.Figure;
+import jeda00.chess.ui.javafx.events.MoveEvent;
+import jeda00.chess.ui.javafx.events.TileClickedEvent;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class FXBoard extends Pane {
 
     private Game game;
 
-    private Board board;
-
-    private List<FXTile> tiles;
-
-    private List<FXFigure> figures;
-
     private Figure activeFigure;
 
     public FXBoard(Game game) {
         this.game = game;
-        this.board = game.getBoard();
-        this.tiles = new ArrayList<>();
-        this.figures = new ArrayList<>();
-
-        setOnMouseClicked(this::onClick);
 
         update();
+
+        setOnMouseClicked(this::onMouseClicked);
     }
 
-    private void onClick(MouseEvent mouseEvent) {
-        int row = (int) mouseEvent.getY() / FXTile.SIZE;
+    public void onMouseClicked(MouseEvent mouseEvent) {
         int col = (int) mouseEvent.getX() / FXTile.SIZE;
-
+        int row = (int) mouseEvent.getY() / FXTile.SIZE;
         Coords coords = new Coords(row, col);
 
-        tiles.forEach(tile -> tile.deactivate());
+        getTiles().forEach(fxTile -> fxTile.deactivate());
 
         if (activeFigure != null && activeFigure.canMoveTo(coords)) {
             try {
                 game.makeMove(activeFigure.moveTo(coords));
-                update();
             } catch (IllegalMoveException e) {
                 System.err.println(e);
             }
+
             activeFigure = null;
+
+            update();
         } else {
-            Figure figure = board.getTile(coords).getFigure();
+            FXTile fxTile = getTile(coords);
+            Figure figure = fxTile.getFigure();
+
             if (figure != null && figure.getColor() == game.getActivePlayerColor()) {
-                tiles.get(coords.getIndex()).activate();
                 activeFigure = figure;
 
-                activeFigure.getPossibleMoves().forEach(move -> {
-                    tiles.get(move.getTo().getIndex()).activate();
-                });
-            } else {
-                activeFigure = null;
+                fxTile.activate();
+
+                activeFigure.getPossibleMoves().forEach(move -> getTile(move.getTo()).activate());
             }
         }
     }
 
-    private void update() {
-        tiles.clear();
-        figures.clear();
+    public void update() {
         getChildren().clear();
 
         for (int row = 0; row < 8; row++) {
             for (int col = 0; col < 8; col++) {
                 Coords coords = new Coords(row, col);
-                Tile tile = board.getTile(coords);
+                Tile tile = game.getBoard().getTile(coords);
 
-                FXTile fxTile = new FXTile(board.getTile(coords));
-
-                tiles.add(fxTile);
+                FXTile fxTile = new FXTile(game.getBoard().getTile(coords));
                 getChildren().add(fxTile);
 
                 if (tile.getFigure() != null) {
                     FXFigure fxFigure = new FXFigure(tile.getFigure());
-
-                    figures.add(fxFigure);
                     getChildren().add(fxFigure);
                 }
             }
         }
+    }
 
-        if (game.isGameOver()) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setContentText(game.getWinner() + " wins!");
-            alert.showAndWait();
-            Platform.exit();
-        }
+    public List<FXTile> getTiles() {
+        return getChildren().stream()
+                .filter(node -> node instanceof FXTile)
+                .map(node -> (FXTile) node)
+                .collect(Collectors.toList());
+    }
+
+    public FXTile getTile(Coords coords) {
+        return getTiles().stream()
+                .filter(fxTile -> fxTile.getCoords().equals(coords))
+                .collect(Collectors.toList())
+                .get(0);
+    }
+
+    public List<FXFigure> getFigures() {
+        return getChildren().stream()
+                .filter(node -> node instanceof FXFigure)
+                .map(node -> (FXFigure) node)
+                .collect(Collectors.toList());
     }
 }

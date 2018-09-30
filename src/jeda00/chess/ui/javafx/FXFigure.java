@@ -6,7 +6,7 @@ import jeda00.chess.figures.Figure;
 
 public class FXFigure extends ImageView {
 
-    private Figure figure;
+    private final Figure figure;
 
     public FXFigure(Figure figure) {
         this.figure = figure;
@@ -17,8 +17,8 @@ public class FXFigure extends ImageView {
         setFitHeight(FXTile.SIZE);
         setFitWidth(FXTile.SIZE);
 
-        setY(figure.getCoords().getRow() * FXTile.SIZE);
         setX(figure.getCoords().getCol() * FXTile.SIZE);
+        setY(figure.getCoords().getRow() * FXTile.SIZE);
     }
 
     public String getPath() {
@@ -26,6 +26,10 @@ public class FXFigure extends ImageView {
         String type = figure.getClass().getSimpleName();
 
         return "/figures/" + color + type + ".png";
+    }
+
+    public Figure getFigure() {
+        return figure;
     }
 
 }
