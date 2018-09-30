@@ -37,6 +37,10 @@ final public class Coords {
         return new Coords(row, col + by);
     }
 
+    public Coords moveInDirectionBy(Direction direction, int by) {
+        return new Coords(row + (direction.getVertical() * by), col + (direction.getHorizontal() * by));
+    }
+
     public boolean inBounds() {
         return row >= 0 && col >= 0 && row < 8 && col < 8;
     }

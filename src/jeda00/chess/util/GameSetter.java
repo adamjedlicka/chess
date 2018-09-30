@@ -66,6 +66,7 @@ public class GameSetter {
         addFigureToBoard(new Bishop(board, Color.WHITE, "C1"), board);
         addFigureToBoard(new Bishop(board, Color.WHITE, "F1"), board);
 
+        addFigureToBoard(new Queen(board, Color.WHITE, "D1"), board);
         addFigureToBoard(new King(board, Color.WHITE, "E1"), board);
 
     }
@@ -89,6 +90,7 @@ public class GameSetter {
         addFigureToBoard(new Bishop(board, Color.BLACK, "C8"), board);
         addFigureToBoard(new Bishop(board, Color.BLACK, "F8"), board);
 
+        addFigureToBoard(new Queen(board, Color.BLACK, "D8"), board);
         addFigureToBoard(new King(board, Color.BLACK, "E8"), board);
     }
 
