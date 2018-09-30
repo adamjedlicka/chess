@@ -4,10 +4,7 @@ import jeda00.chess.Board;
 import jeda00.chess.Color;
 import jeda00.chess.Coords;
 import jeda00.chess.Tile;
-import jeda00.chess.figures.Figure;
-import jeda00.chess.figures.King;
-import jeda00.chess.figures.Knight;
-import jeda00.chess.figures.Pawn;
+import jeda00.chess.figures.*;
 
 import java.util.List;
 
@@ -64,6 +61,9 @@ public class GameSetter {
 
         addFigureToBoard(new Knight(board, Color.WHITE, "B1"), board);
         addFigureToBoard(new Knight(board, Color.WHITE, "G1"), board);
+
+        addFigureToBoard(new Rook(board, Color.WHITE, "A1"), board);
+        addFigureToBoard(new Rook(board, Color.WHITE, "H1"), board);
     }
 
     private void setBlack(Board board) {
@@ -80,6 +80,9 @@ public class GameSetter {
 
         addFigureToBoard(new Knight(board, Color.BLACK, "B8"), board);
         addFigureToBoard(new Knight(board, Color.BLACK, "G8"), board);
+
+        addFigureToBoard(new Rook(board, Color.BLACK, "A8"), board);
+        addFigureToBoard(new Rook(board, Color.BLACK, "H8"), board);
     }
 
 }
