@@ -1,6 +1,7 @@
 package jeda00.chess.ui.javafx;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -22,15 +23,20 @@ public class App extends Application {
         BorderPane borderPane = new BorderPane();
 
         FXBoard fxBoard = new FXBoard(game);
+
         fxBoard.setOnMoveEnd(moveEndEvent -> {
-            BasicPlayer player = new BasicPlayer(game);
-            try {
-                Move move = player.play();
-                game.makeMove(move);
-                fxBoard.update();
-            } catch (IllegalMoveException e) {
-                System.err.println(e);
-            }
+            new Thread(() -> {
+                BasicPlayer player = new BasicPlayer(game);
+                try {
+                    Move move = player.play();
+                    game.makeMove(move);
+                    Platform.runLater(() -> {
+                        fxBoard.update();
+                    });
+                } catch (IllegalMoveException e) {
+                    System.err.println(e);
+                }
+            }).start();
         });
 
 
