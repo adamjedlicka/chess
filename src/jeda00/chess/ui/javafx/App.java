@@ -5,6 +5,9 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import jeda00.chess.Game;
+import jeda00.chess.IllegalMoveException;
+import jeda00.chess.Move;
+import jeda00.chess.logic.BasicPlayer;
 
 public class App extends Application {
 
@@ -19,6 +22,16 @@ public class App extends Application {
         BorderPane borderPane = new BorderPane();
 
         FXBoard fxBoard = new FXBoard(game);
+        fxBoard.setOnMoveEnd(moveEndEvent -> {
+            BasicPlayer player = new BasicPlayer(game);
+            try {
+                Move move = player.play();
+                game.makeMove(move);
+                fxBoard.update();
+            } catch (IllegalMoveException e) {
+                System.err.println(e);
+            }
+        });
 
         borderPane.setCenter(fxBoard);
 

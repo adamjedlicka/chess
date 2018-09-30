@@ -1,13 +1,11 @@
 package jeda00.chess.ui.javafx;
 
 import javafx.event.EventHandler;
-import javafx.event.EventType;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import jeda00.chess.*;
 import jeda00.chess.figures.Figure;
-import jeda00.chess.ui.javafx.events.MoveEvent;
-import jeda00.chess.ui.javafx.events.TileClickedEvent;
+import jeda00.chess.ui.javafx.events.MoveEndEvent;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -43,6 +41,8 @@ public class FXBoard extends Pane {
             activeFigure = null;
 
             update();
+
+            fireEvent(new MoveEndEvent());
         } else {
             FXTile fxTile = getTile(coords);
             Figure figure = fxTile.getFigure();
@@ -74,6 +74,10 @@ public class FXBoard extends Pane {
                 }
             }
         }
+    }
+
+    public void setOnMoveEnd(EventHandler<MoveEndEvent> handler) {
+        addEventHandler(MoveEndEvent.TYPE, handler);
     }
 
     public List<FXTile> getTiles() {
