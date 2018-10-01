@@ -91,6 +91,11 @@ public class Bishop extends Figure {
     }
 
     @Override
+    public String toString() {
+        return (isWhite() ? "White" : "Black") + " bishop at " + getCoords();
+    }
+
+    @Override
     public Figure copyToNewBoard(Board board) {
         return new Bishop(board, getColor(), getCoords().toString());
     }

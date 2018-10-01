@@ -25,7 +25,7 @@ public class UI {
             clearConsole();
 
             BasicPlayer player = new BasicPlayer(game);
-            Move move = player.play();
+            Move move = player.play().getMove();
 
             System.out.println(move);
 

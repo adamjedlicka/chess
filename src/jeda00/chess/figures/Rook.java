@@ -91,6 +91,11 @@ public class Rook extends Figure {
     }
 
     @Override
+    public String toString() {
+        return (isWhite() ? "White" : "Black") + " rook at " + getCoords();
+    }
+
+    @Override
     public Figure copyToNewBoard(Board board) {
         return new Rook(board, getColor(), getCoords().toString());
     }

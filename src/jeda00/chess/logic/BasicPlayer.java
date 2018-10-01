@@ -14,8 +14,8 @@ public class BasicPlayer {
         this.game = game;
     }
 
-    public Move play() throws IllegalMoveException {
-        return predictPlay(game, 4).getMove();
+    public MovePrediction play() throws IllegalMoveException {
+        return predictPlay(new Game(game), 4);
     }
 
     private MovePrediction predictPlay(Game game, int steps) throws IllegalMoveException {
@@ -35,7 +35,7 @@ public class BasicPlayer {
             Game _game = new Game(game);
             _game.makeMove(move);
 
-            MovePrediction prediction = predictPlay(_game, steps - 1);
+            MovePrediction prediction = predictPlay(new Game(_game), steps - 1);
             prediction.addMove(move);
 
             if (bestPrediction == null || prediction.getValueFor(playerColor) > bestPrediction.getValueFor(playerColor)) {

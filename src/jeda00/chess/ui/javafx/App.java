@@ -5,9 +5,7 @@ import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import jeda00.chess.Game;
-import jeda00.chess.IllegalMoveException;
-import jeda00.chess.Move;
+import jeda00.chess.*;
 import jeda00.chess.logic.BasicPlayer;
 
 public class App extends Application {
@@ -23,15 +21,18 @@ public class App extends Application {
         BorderPane borderPane = new BorderPane();
 
         FXBoard fxBoard = new FXBoard(game);
+        FXLog fxLog = new FXLog();
 
         fxBoard.setOnMoveEnd(moveEndEvent -> {
             new Thread(() -> {
                 BasicPlayer player = new BasicPlayer(game);
                 try {
-                    Move move = player.play();
-                    game.makeMove(move);
+                    MovePrediction movePrediction = player.play();
+                    game.makeMove(movePrediction.getMove());
                     Platform.runLater(() -> {
                         fxBoard.update();
+                        fxLog.appendText("=> Prediction value: " + movePrediction.getValueFor(Color.BLACK));
+                        fxLog.appendText(movePrediction.toString());
                     });
                 } catch (IllegalMoveException e) {
                     System.err.println(e);
@@ -41,9 +42,10 @@ public class App extends Application {
 
 
         borderPane.setCenter(fxBoard);
+        borderPane.setRight(fxLog);
 
         primaryStage.setResizable(false);
-        primaryStage.setScene(new Scene(borderPane, 800, 800));
+        primaryStage.setScene(new Scene(borderPane, 1200, 800));
         primaryStage.setTitle("Chess by Adam Jedlička");
         primaryStage.show();
     }

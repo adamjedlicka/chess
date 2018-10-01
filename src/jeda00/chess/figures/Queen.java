@@ -48,6 +48,11 @@ public class Queen extends Figure {
     }
 
     @Override
+    public String toString() {
+        return (isWhite() ? "White" : "Black") + " queen at " + getCoords();
+    }
+
+    @Override
     public Figure copyToNewBoard(Board board) {
         return new Queen(board, getColor(), getCoords().toString());
     }

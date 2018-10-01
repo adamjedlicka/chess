@@ -24,13 +24,16 @@ public class MovePrediction {
 
     public int getValueFor(Color color) {
         int value = 0;
+        int multiplier = moves.size();
 
         for (Move move : moves) {
             if (move.getPlayerColor() == color) {
-                value += move.getValue();
+                value += (move.getValue() * multiplier);
             } else {
-                value -= move.getValue();
+                value -= (move.getValue() * multiplier);
             }
+
+            multiplier--;
         }
 
         return value;
